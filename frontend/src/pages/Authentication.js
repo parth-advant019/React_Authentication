@@ -45,5 +45,10 @@ export async function action({ request }) {
 
   localStorage.setItem("token", token);
 
+  //user refresh after 10 min then expire time must 50 min not 1 hour
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1);
+  localStorage.setItem("expiration", expiration.toISOString());
+
   return redirect("/");
 }
